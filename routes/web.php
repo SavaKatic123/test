@@ -11,6 +11,17 @@
 |
 */
 
+use Illuminate\Support\Facades\Cache;
+
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
 });
+
+Route::get('/home', 'TestController@show')->middleware("TestMiddleware");
+
+Route::get('/cache', function() {
+	return Cache::get('key');
+});
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
