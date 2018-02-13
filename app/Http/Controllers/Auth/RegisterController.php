@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Country;
 
 class RegisterController extends Controller
 {
@@ -53,7 +54,7 @@ class RegisterController extends Controller
             'lastname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'country' => 'string|max:255',
+            'country' => 'string|max:255|exists:countries,full_name',
             'company' => 'string|max:255',
         ]);
     }
@@ -75,4 +76,11 @@ class RegisterController extends Controller
             'company' => $data['company']
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+
+        return view('auth.register', ['array' => Country::select('full_name')->where("full_name", "!=", NULL)->orderBy('full_name', 'asc')->get()]);
+    }
+
 }

@@ -6,12 +6,12 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
-
+                
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
@@ -74,7 +74,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
                             <label for="country" class="col-md-4 control-label">Country</label>
 
@@ -88,6 +87,20 @@
                                 @endif
                             </div>
                         </div>
+
+
+                        <!--<div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
+                            <label for="country" class="col-md-4 control-label">Country</label>
+                            <div class="col-md-6">
+                                <select class="form-control">
+                                @foreach($array as $name) 
+                                    <option>{{$name->full_name}}</option>                                        
+                                
+                                @endforeach
+                                </select>
+                            </div>
+                            
+                        </div>-->
 
                         <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
                             <label for="company" class="col-md-4 control-label">Company</label>
